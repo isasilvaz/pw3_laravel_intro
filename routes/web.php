@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\LivroController;
 use App\Http\Controllers\OficinaController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('home');
@@ -12,6 +13,7 @@ Route::get('/', function () {
 
 Route::view('/landing', 'landing');
 Route::view('/admin', 'admin.dashboard');
+Route::get('/admin', [UserController::class, 'index']);
 
 Route:: get('/teste-orm', function() {
     User::create([
@@ -30,3 +32,6 @@ Route::post('/livros', [LivroController::class, 'store']);
 
 Route::get('/oficinas', [OficinaController::class, 'index']);
 Route::post('/oficinas', [OficinaController::class, 'store']);
+
+Route::get('/usuarios/novo', [UserController::class, 'create']);
+Route::post('/usuarios', [UserController::class, 'store']);
