@@ -35,9 +35,10 @@
             <table class="min-w-full border-collapse text-left">
                 <thead>
                     <tr class="border-b border-slate-200 text-sm text-slate-500">
-                        <th class="py-3">Item</th>
-                        <th class="py-3">Responsável</th>
-                        <th class="py-3">Status</th>
+                        <th class="py-3">Nome</th>
+                        <th class="py-3">E-mail</th>
+                        <th class="py-3">Data</th>
+                        <th class="py-3">Ação</th>
                     </tr>
                 </thead>
                 <tbody class="text-sm text-slate-700">
@@ -68,11 +69,26 @@
                     </tr>
 
                     {{-- Próximas aulas: Registros dinâmicos com Blade e Eloquent --}}
-                    @foreach ($users as $user)
+                    @foreach ($usuarios as $user)
                         <tr class="border-b border-slate-100">
-                            <td class="py-3 font-medium text-slate-900">{{ $user->name }}</td>
-                            <td class="py-3 text-slate-600">{{ $user->email }}</td>
-                            <td class="py-3 text-slate-500">{{ $user->created_at->format('d/m/Y') }}</td>
+                            <td class="py-3 font-medium text-slate-900">
+                                {{ $user->name }}
+                            </td>
+
+                            <td class="py-3 text-slate-600">
+                                {{ $user->email }}
+                            </td>
+
+                            <td class="py-3 text-slate-500">
+                                {{ $user->created_at->format('d/m/Y') }}
+                            </td>
+
+                            <td class="py-3">
+                                <a href="/usuarios/{{ $user->id }}/editar"
+                                    class="text-indigo-600 hover:text-indigo-800 font-medium">
+                                    Editar
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
